@@ -1,0 +1,40 @@
+/*添加以下代码就可以让小屏幕的背景图片全部显示出来*/
+html {
+	position: relative;
+	min-height: 100%;
+}
+
+body {
+	font-family: "微软雅黑";
+	font-size: 14px;
+	padding: 0;
+	background:url(../img/bg.png) no-repeat;
+	background-size: cover;
+	margin-bottom: 70px;   /*这行代码是为了让小屏幕的底部和表单之间有一定的间隙,不至于提交按钮被覆盖*/
+}
+
+.form-container {
+	border: 1px solid #FFFFFF;
+	padding: 20px;
+	margin-top: 100px;
+	color: white;
+	-webkit-box-shadow: 7px 14px 24px 5px rgba(0,0,0,0.75);  /*以下三行代码在css设置阴影中拷贝而来*/
+	-moz-box-shadow: 7px 14px 24px 5px rgba(0,0,0,0.75);
+	box-shadow: 7px 14px 24px 5px rgba(0,0,0,0.75);
+	background: rgba(0,0,0,0.7);
+	border-radius: 10px;
+}
+
+.form-container h2 {
+	text-align: center;
+}
+
+.footer {
+	padding: 12px;
+	background:#333333;
+	text-align: center;
+	color: #FFFFFF;
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+}
