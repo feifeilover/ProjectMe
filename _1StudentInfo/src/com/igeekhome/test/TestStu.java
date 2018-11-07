@@ -42,4 +42,23 @@ public class TestStu {
 		int allCount = service.querytAllCount();
 		System.out.println(allCount);
 	}
+	
+	@Test
+	public void test05() {
+		GradeService gradeservice = new GradeServiceImpl();
+		Grade grade = new Grade();
+		grade.setGradeName("计本");
+		List<Grade> lists = gradeservice.queryGradeByName(grade);
+		System.out.println(lists);
+	}
+	
+	@Test
+	public void test06() {
+		GradeService gradeservice = new GradeServiceImpl();
+		Grade grade = new Grade();
+		grade.setGradeName("");
+		Paging paging = new Paging(2, 10);
+		List<Grade> lists = gradeservice.queryGradeByPageAndName(paging, grade);
+		System.out.println(lists);
+	}
 }

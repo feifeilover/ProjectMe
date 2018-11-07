@@ -38,9 +38,16 @@ public class GradeListServlet extends HttpServlet{
 		
 		//调用业务层
 		GradeService gradeService = new GradeServiceImpl();
-		Paging paging = new Paging(Integer.parseInt(page), Integer.parseInt(rows));
-		List<Grade> grades = gradeService.queryGradeByPage(paging);
+		/*Paging paging = new Paging(Integer.parseInt(page), Integer.parseInt(rows));
+		List<Grade> grades = gradeService.queryGradeByPage(paging);*/
 		int total = gradeService.querytAllCount();  //总记录数
+		
+		//调用分页+模糊查询的业务层
+		Paging paging = new Paging(Integer.parseInt(page), Integer.parseInt(rows));
+		Grade grade = new Grade();
+		grade.setGradeName(gradeName);
+		List<Grade> grades = gradeService.queryGradeByPageAndName(paging, grade);
+		
 		
 		//装入jsonObject中
 		JSONObject jsonobject = new JSONObject();

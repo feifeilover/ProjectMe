@@ -48,5 +48,45 @@ public class GradeDaoImpl implements GradeDao{
 		}
 		return grades;
 	}
-
+	@Override
+	public List<Grade> doSelectGradeByName(Grade grade) {
+		String sql = "SELECT * FROM t_grade WHERE gradeName LIKE ?;";
+		try {
+			return qr.query(sql, new BeanListHandler<Grade>(Grade.class), "%"+ grade.getGradeName()+ "%");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	@Override
+	public List<Grade> doSelectGradeByPageAndName(Paging paging, Grade grade) {
+		String sql = "SELECT * FROM t_grade WHERE gradeName LIKE ? LIMIT ?,?;";
+		String sql1 = "SELECT * FROM t_grade LIMIT ?,?;";
+		if(grade.getGradeName() == null || grade.getGradeName() == "") {
+			try {
+				return qr.query(sql1, new BeanListHandler<Grade>(Grade.class),paging.getStart(),paging.getRows());
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} else {
+			try {
+				return qr.query(sql, new BeanListHandler<Grade>(Grade.class),'%' + grade.getGradeName() +'%',paging.getStart(),paging.getRows());
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+		return null;
+	}
+	@Override
+	public int doDeleteGradeByBatch(String delIds) {  //批量删除
+		String sql = "DELETE FROM t_grade WHERE id IN("+ delIds +");";
+		try {
+			return qr.update(sql,delIds);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
 }

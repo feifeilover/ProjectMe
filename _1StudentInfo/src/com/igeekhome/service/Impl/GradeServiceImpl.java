@@ -22,4 +22,12 @@ public class GradeServiceImpl implements GradeService{
 	public int querytAllCount() {
 		return gradeDao.doSelectAllCount();
 	}
+	@Override
+	public List<Grade> queryGradeByName(Grade grade) {
+		return gradeDao.doSelectGradeByName(grade);
+	}
+	@Override
+	public List<Grade> queryGradeByPageAndName(Paging paging, Grade grade) {
+		return gradeDao.doSelectGradeByPageAndName(paging, grade);
+	}
 }
