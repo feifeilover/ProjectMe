@@ -57,6 +57,46 @@
 			}
 		});
 	}
+	
+	function newUser() {
+		$('#dlg').dialog('open').dialog('center').dialog('setTitle',
+				'添加班级');
+		$('#fm').form('clear');
+		url:'add.do';
+		
+	}
+	
+	function saveUser() {
+		$('#fm').form('submit', {
+			url : url,
+			onSubmit : function() {
+				return $(this).form('validate');
+			},
+			success : function(result) {
+				var result = eval('(' + result + ')');
+				if (result.errorMsg) {
+					$.messager.show({
+						title : 'Error',
+						msg : result.errorMsg
+					});
+				} else {
+					$('#dlg').dialog('close'); // close the dialog
+					$('#dg').datagrid('reload'); // reload the user data
+				}
+			}
+		});
+	}
+	
+	function editUser() {
+		var row = $('#dg').datagrid('getSelected');
+		if (row) {
+			$('#dlg').dialog('open').dialog('center').dialog('setTitle',
+					'Edit User');
+			$('#fm').form('load', row);
+			url = 'edit.do?id=' + row.id;
+			
+		}
+	}
 </script>
 
 
@@ -83,8 +123,8 @@
 	
 	<div id="tb" style="padding:2px 5px;">
 		<div>
-			<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true"></a>
-			<a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true"></a>
+			<a href="javascript:newUser()" class="easyui-linkbutton" iconCls="icon-add" plain="true"></a>
+			<a href="javascript:editUser()" class="easyui-linkbutton" iconCls="icon-edit" plain="true"></a>
 			<a href="javascript:deleteGrade()" class="easyui-linkbutton" iconCls="icon-remove" plain="true"></a>
 		</div>
 		
@@ -93,7 +133,24 @@
 		</div>
 	</div>
 	
+	<div id="dlg" class="easyui-dialog" style="width: 400px"
+		data-options="closed:true,modal:true,border:'thin',buttons:'#dlg-buttons'">
+		<form id="fm" method="post" novalidate
+			style="margin: 0; padding: 20px 50px">
+			<div style="margin-bottom: 10px">
+				<input name="gradeName" class="easyui-textbox" required="true"
+					label="班级名称:" style="width: 100%">
+			</div>
+			<div style="margin-bottom: 10px">
+				<input name="gradeDesc" class="easyui-textbox" required="true"
+					label="名称描述:" style="width: 100%; height:100px">
+			</div>
+		</form>
+	</div>
 	
-	
+	<div id="dlg-buttons">
+		<a href="javascript:void(0)" class="easyui-linkbutton c6"
+			iconCls="icon-ok" onclick="saveUser()" style="width: 90px">Save</a> 
+	</div>
 </body>
 </html>
