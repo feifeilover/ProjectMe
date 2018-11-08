@@ -79,11 +79,12 @@ public class GradeDaoImpl implements GradeDao{
 		
 		return null;
 	}
+	
 	@Override
-	public int doDeleteGradeByBatch(String delIds) {  //批量删除
-		String sql = "DELETE FROM t_grade WHERE id IN("+ delIds +");";
+	public int doDeleteGradeByBatch(String delIds) {
+		String sql = "delete from t_grade where id in ("+delIds+")";
 		try {
-			return qr.update(sql,delIds);
+			return qr.update(sql);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

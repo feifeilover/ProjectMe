@@ -6,7 +6,7 @@
 		<property name="driverClass">com.mysql.jdbc.Driver</property>
 		<property name="jdbcUrl">jdbc:mysql://127.0.0.1:3306/db_studentinfo</property>
 		<property name="user">root</property>
-		<property name="password">msql</property>
+		<property name="password">123</property>
 		
 		<!-- 如果池中数据连接不够时一次增长多少个 -->
 		<property name="acquireIncrement">5</property>

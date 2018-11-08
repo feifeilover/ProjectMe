@@ -11,4 +11,5 @@ public interface GradeService {
 	public int querytAllCount();  //获取总记录数
 	public List<Grade> queryGradeByName(Grade grade) ;  //模糊查询
 	public List<Grade> queryGradeByPageAndName(Paging paging, Grade grade) ;  //模糊查询加分页
+	public int removeGradeByBatch(String delIds);//批量删除几条数据
 }

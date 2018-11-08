@@ -31,6 +31,35 @@
 		});
 	}
 	
+	function deleteGrade(){
+		
+		var rows = $('#dg').datagrid('getSelections');
+		if(rows.length == 0) {
+			$.messager.alert("系统提示:","请选择您要删除的数据");
+			return ;
+		}
+		var ss = [];
+		for(var i=0; i<rows.length; i++){
+			ss.push(rows[i].id);
+		}
+		var ids = ss.join(",");
+		$.messager.confirm("操作提示:","您确定要删除这"+rows.length+"条数据吗",function(data) {
+			if(data) {
+				$.post("delete.do",{delIds:ids},function(jsonobject) {
+					if(jsonobject.success) {
+						$.messager.confirm("系统提示","您已成功删除"+jsonobject.delNums+ "条数据");
+						$("#dg").datagrid("reload"); //更新
+					} else {
+						$.messager.confirm("系统提示:" + jsonobject.errorMsg);
+					}
+				},"json");
+			} else {
+				alert("NO");
+			}
+		});
+	}
+	
+	
 </script>
 
 
@@ -59,9 +88,7 @@
 		<div>
 			<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true"></a>
 			<a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true"></a>
-			<a href="#" class="easyui-linkbutton" iconCls="icon-save" plain="true"></a>
-			<a href="#" class="easyui-linkbutton" iconCls="icon-cut" plain="true"></a>
-			<a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true"></a>
+			<a href="javascript:deleteGrade()" class="easyui-linkbutton" iconCls="icon-remove" plain="true"></a>
 		</div>
 		
 		<div>
