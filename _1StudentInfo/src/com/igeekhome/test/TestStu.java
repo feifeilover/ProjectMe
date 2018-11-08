@@ -6,10 +6,13 @@ import org.junit.Test;
 
 import com.igeekhome.pojo.Grade;
 import com.igeekhome.pojo.Paging;
+import com.igeekhome.pojo.Student;
 import com.igeekhome.pojo.User;
 import com.igeekhome.service.GradeService;
+import com.igeekhome.service.StudentService;
 import com.igeekhome.service.UserService;
 import com.igeekhome.service.Impl.GradeServiceImpl;
+import com.igeekhome.service.Impl.StudentServiceImpl;
 import com.igeekhome.service.Impl.UserServiceImpl;
 
 public class TestStu {
@@ -69,6 +72,14 @@ public class TestStu {
 		grade.setGradeName("java");
 		grade.setGradeDesc("java .....");
 		int result = service.addGrade(grade);
+		System.out.println(result);
+	}
+	
+	@Test
+	public void test08() {
+		StudentService stuSer = new StudentServiceImpl();
+		Paging paging = new Paging(1, 5);
+		List<Student> result = stuSer.queryByPage(paging);
 		System.out.println(result);
 	}
 }
