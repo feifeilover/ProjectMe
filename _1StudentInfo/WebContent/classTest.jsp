@@ -32,7 +32,6 @@
 	}
 	
 	function deleteGrade(){
-		
 		var rows = $('#dg').datagrid('getSelections');
 		if(rows.length == 0) {
 			$.messager.alert("系统提示:","请选择您要删除的数据");
@@ -58,8 +57,6 @@
 			}
 		});
 	}
-	
-	
 </script>
 
 
@@ -92,7 +89,7 @@
 		</div>
 		
 		<div>
-		&nbsp;班级名称:&nbsp; <input text="type" name="gradeName" id="gradeName" style="height:30px"/>&nbsp;<a href="javascript:searchGrade()" class="easyui-linkbutton" data-options="iconCls:'icon-search'" style="width:80px">Search</a>
+			&nbsp;班级名称:&nbsp; <input text="type" name="gradeName" id="gradeName" style="height:30px"/>&nbsp;<a href="javascript:searchGrade()" class="easyui-linkbutton" data-options="iconCls:'icon-search'" style="width:80px">Search</a>
 		</div>
 	</div>
 	

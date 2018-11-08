@@ -61,4 +61,14 @@ public class TestStu {
 		List<Grade> lists = gradeservice.queryGradeByPageAndName(paging, grade);
 		System.out.println(lists);
 	}
+	
+	@Test
+	public void test07() {
+		GradeService service = new GradeServiceImpl();
+		Grade grade = new Grade();
+		grade.setGradeName("java");
+		grade.setGradeDesc("java .....");
+		int result = service.addGrade(grade);
+		System.out.println(result);
+	}
 }

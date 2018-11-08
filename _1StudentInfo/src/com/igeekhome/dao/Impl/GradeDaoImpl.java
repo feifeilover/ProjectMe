@@ -90,4 +90,24 @@ public class GradeDaoImpl implements GradeDao{
 		}
 		return 0;
 	}
+	@Override
+	public int doInsertGrade(Grade grade) {
+		String sql = "insert into t_grade(gradeName,gradeDesc) values(?,?);";
+		try {
+			return qr.update(sql,grade.getGradeName(),grade.getGradeDesc());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	@Override
+	public int doUpdateGrade(Grade grade) {
+		String sql = "UPDATE t_grade SET gradeName = ?,gradeDesc = ? WHERE id = ?";
+		try {
+			return qr.update(sql,grade.getGradeName(),grade.getGradeDesc(),grade.getId());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
 }

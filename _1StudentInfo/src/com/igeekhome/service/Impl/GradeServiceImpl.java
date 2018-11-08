@@ -40,4 +40,14 @@ public class GradeServiceImpl implements GradeService {
 	public int removeGradeByBatch(String delIds) {
 		return gradeDao.doDeleteGradeByBatch(delIds);
 	}
+
+	@Override
+	public int addGrade(Grade grade) {
+		return gradeDao.doInsertGrade(grade);
+	}
+
+	@Override
+	public int updateGrade(Grade grade) {
+		return gradeDao.doUpdateGrade(grade);
+	}
 }

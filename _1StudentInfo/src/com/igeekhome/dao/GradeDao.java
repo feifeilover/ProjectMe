@@ -12,4 +12,6 @@ public interface GradeDao {
     public List<Grade> doSelectGradeByName(Grade grade);//模糊查询
     public List<Grade> doSelectGradeByPageAndName(Paging paging,Grade grade);  //模糊查询加分页
     public int doDeleteGradeByBatch(String delIds);  //批量删除
+    public int doInsertGrade(Grade grade); //添加数据
+    public int doUpdateGrade(Grade grade);    //修改数据
 }
